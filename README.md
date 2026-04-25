@@ -15,7 +15,7 @@ Be the cheapest, fastest, and most controllable way to list the cards I own for 
 ## What this repo is *not*
 
 - Not the inventory system. That lives in [`fg-collect-core`](https://github.com/FG-CollectShop/fg-collect-core) (private).
-- Not the admin panel. Also in `fg-collect-core`.
+- Not the admin panel. That lives in [`fg-collect-admin`](https://github.com/FG-CollectShop/fg-collect-admin) (private).
 - Not a price tracker or market-research tool. Historical pricing and market analysis live in a separate pre-existing repo outside this org.
 - Not a place to store card data. Data comes from the core API at build time or runtime.
 
