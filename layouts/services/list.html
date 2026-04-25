@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="max-w-4xl mx-auto px-4 py-16">
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight">{{ .Title }}</h1>
+  {{ with .Description }}<p class="mt-3 text-gray-600 max-w-2xl">{{ . }}</p>{{ end }}
+
+  <div class="mt-10 rounded-lg border-2 border-dashed border-gray-200 p-10 text-center text-gray-500">
+    <div class="text-sm font-semibold uppercase tracking-wider text-gray-400">Coming soon</div>
+    <p class="mt-3 max-w-xl mx-auto">
+      Services adjacent to the storefront — grading submissions, deck-building consults,
+      collection appraisals, and more — will live here.
+    </p>
+  </div>
+</section>
+{{ end }}

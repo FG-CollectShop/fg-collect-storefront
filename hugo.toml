@@ -28,7 +28,7 @@ uglyURLs = false
 [menu]
   [[menu.main]]
     identifier = "tcg"
-    name = "TCGs"
+    name = "Trading Card Games"
     url = "/tcg/"
     weight = 10
   [[menu.main]]
@@ -39,7 +39,7 @@ uglyURLs = false
     weight = 11
   [[menu.main]]
     identifier = "magic"
-    name = "Magic"
+    name = "Magic: The Gathering"
     parent = "tcg"
     url = "/tcg/magic/"
     weight = 12
@@ -49,6 +49,17 @@ uglyURLs = false
     parent = "tcg"
     url = "/tcg/weiss/"
     weight = 13
+  [[menu.main]]
+    identifier = "tcg-all"
+    name = "All TCGs"
+    parent = "tcg"
+    url = "/tcg/"
+    weight = 19
+  [[menu.main]]
+    identifier = "services"
+    name = "Services"
+    url = "/services/"
+    weight = 20
   [[menu.main]]
     identifier = "cart"
     name = "Cart"

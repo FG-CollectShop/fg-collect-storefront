@@ -2,11 +2,37 @@
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6">
     <a href="/" class="font-bold text-xl tracking-tight shrink-0">{{ site.Params.brand }}</a>
 
-    <nav class="hidden md:flex items-center gap-4 text-sm">
-      {{ range sort site.Data.games "order" }}
-      <a href="/tcg/{{ .id }}/" class="text-gray-700 hover:text-black">{{ .shortName }}</a>
+    <nav class="hidden md:flex items-center gap-1 text-sm">
+      {{ range site.Menus.main }}
+        {{ if not .HasChildren }}
+          {{ if eq .Identifier "cart" }}{{/* render cart at the far right via the badge */}}{{ else }}
+          <a href="{{ .URL }}" class="px-3 py-1.5 text-gray-700 hover:text-black rounded">{{ .Name }}</a>
+          {{ end }}
+        {{ else }}
+          <div class="relative group">
+            <button
+              type="button"
+              class="px-3 py-1.5 text-gray-700 hover:text-black rounded inline-flex items-center gap-1"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-menu-toggle="{{ .Identifier }}"
+            >
+              {{ .Name }}
+              <svg class="w-3 h-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 4.5l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div
+              class="absolute left-0 top-full mt-1 min-w-[14rem] bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition py-1 z-30"
+              data-menu-panel="{{ .Identifier }}"
+            >
+              {{ range .Children }}
+              <a href="{{ .URL }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-black">{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
       {{ end }}
-      <a href="/tcg/" class="text-gray-400 hover:text-black">All TCGs</a>
     </nav>
 
     <form action="/search/" method="get" class="hidden md:block flex-1 max-w-sm ml-auto">
@@ -23,3 +49,26 @@
     </div>
   </div>
 </header>
+
+{{/* Mobile click-toggle for the dropdown (hover doesn't work on touch). */}}
+<script>
+  document.querySelectorAll('[data-menu-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var id = btn.getAttribute('data-menu-toggle');
+      var panel = document.querySelector('[data-menu-panel="' + id + '"]');
+      if (!panel) return;
+      var open = panel.classList.toggle('!visible');
+      panel.classList.toggle('!opacity-100', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('[data-menu-panel]').forEach(function (p) {
+      p.classList.remove('!visible', '!opacity-100');
+    });
+    document.querySelectorAll('[data-menu-toggle]').forEach(function (b) {
+      b.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
