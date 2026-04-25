@@ -1,0 +1,29 @@
+<footer class="border-t border-gray-200 mt-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-4 text-sm">
+    <div class="md:col-span-2">
+      <div class="font-bold text-lg">{{ site.Params.brand }}</div>
+      <p class="text-gray-600 mt-2 max-w-sm">{{ site.Params.tagline }}</p>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-2">Shop</div>
+      <ul class="space-y-1 text-gray-600">
+        {{ range sort site.Data.games "order" }}
+        <li><a href="/tcg/{{ .id }}/" class="hover:text-black">{{ .shortName }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+
+    <div>
+      <div class="font-semibold mb-2">Help</div>
+      <ul class="space-y-1 text-gray-600">
+        <li><a href="/cart/" class="hover:text-black">Cart</a></li>
+        <li><a href="/about/" class="hover:text-black">About</a></li>
+        <li><a href="/contact/" class="hover:text-black">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+    © {{ now.Year }} {{ site.Params.brand }}
+  </div>
+</footer>

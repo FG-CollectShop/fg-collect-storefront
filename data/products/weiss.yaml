@@ -1,0 +1,34 @@
+sealed:
+  - id: ws-sealed-hololive-booster-box
+    name: "hololive production Vol.2 Booster Box (EN)"
+    set: "hololive production Vol.2"
+    price: 119.99
+    stock: 4
+    image: "/img/placeholder-sealed.svg"
+  - id: ws-sealed-bocchi-booster-box-jp
+    name: "Bocchi the Rock! Booster Box (JP)"
+    set: "Bocchi the Rock!"
+    price: 94.99
+    stock: 2
+    image: "/img/placeholder-sealed.svg"
+singles:
+  - id: ws-single-gawr-gura-ssr
+    name: "Gawr Gura, Apex Predator SSR"
+    set: "hololive production Vol.2"
+    number: "HOL/W91-E001S"
+    price: 65.00
+    stock: 1
+    image: "/img/placeholder-single.svg"
+    condition: "NM"
+    language: "EN"
+    foil: true
+  - id: ws-single-bocchi-signature
+    name: "Hitori Gotoh, Bocchi-chan SR"
+    set: "Bocchi the Rock!"
+    number: "BTR/W107-001SR"
+    price: 42.50
+    stock: 1
+    image: "/img/placeholder-single.svg"
+    condition: "NM"
+    language: "JP"
+    foil: true

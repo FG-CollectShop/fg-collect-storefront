@@ -1,0 +1,44 @@
+sealed:
+  - id: mtg-sealed-mh3-collector-booster-box
+    name: "Modern Horizons 3 Collector Booster Box"
+    set: "Modern Horizons 3"
+    price: 369.99
+    stock: 2
+    image: "/img/placeholder-sealed.svg"
+  - id: mtg-sealed-lotr-draft-booster
+    name: "LotR: Tales of Middle-earth Draft Booster"
+    set: "LotR: Tales of Middle-earth"
+    price: 4.49
+    stock: 18
+    image: "/img/placeholder-sealed.svg"
+singles:
+  - id: mtg-single-ragavan
+    name: "Ragavan, Nimble Pilferer"
+    set: "Modern Horizons 2"
+    number: "138/303"
+    price: 42.00
+    stock: 1
+    image: "/img/placeholder-single.svg"
+    condition: "NM"
+    language: "EN"
+    foil: false
+  - id: mtg-single-the-one-ring
+    name: "The One Ring"
+    set: "LotR: Tales of Middle-earth"
+    number: "246/281"
+    price: 68.50
+    stock: 1
+    image: "/img/placeholder-single.svg"
+    condition: "NM"
+    language: "EN"
+    foil: false
+  - id: mtg-single-black-lotus-proxy
+    name: "Orcish Bowmasters"
+    set: "LotR: Tales of Middle-earth"
+    number: "103/281"
+    price: 28.00
+    stock: 1
+    image: "/img/placeholder-single.svg"
+    condition: "NM"
+    language: "EN"
+    foil: false

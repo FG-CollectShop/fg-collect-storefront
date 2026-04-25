@@ -1,0 +1,60 @@
+baseURL = "https://futuregadgetlabs.example/"
+languageCode = "en-us"
+title = "FutureGadgetLabs"
+enableRobotsTXT = true
+
+# Pretty URLs; no trailing slash on single pages
+uglyURLs = false
+
+[params]
+  brand = "FutureGadgetLabs"
+  tagline = "Trading cards, sealed and singles"
+
+  # Stripe publishable key (pk_*). Safe to commit — NOT the secret key.
+  # Replace with pk_live_... at launch. Leave empty to disable checkout button.
+  stripePublishableKey = ""
+
+  # Base URL of fg-collect-core API. Client-side JS hits {apiBase}/checkout/session.
+  # Empty disables checkout (scaffold mode).
+  apiBase = ""
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[menu]
+  [[menu.main]]
+    identifier = "tcg"
+    name = "TCGs"
+    url = "/tcg/"
+    weight = 10
+  [[menu.main]]
+    identifier = "pokemon"
+    name = "Pokémon"
+    parent = "tcg"
+    url = "/tcg/pokemon/"
+    weight = 11
+  [[menu.main]]
+    identifier = "magic"
+    name = "Magic"
+    parent = "tcg"
+    url = "/tcg/magic/"
+    weight = 12
+  [[menu.main]]
+    identifier = "weiss"
+    name = "Weiß Schwarz"
+    parent = "tcg"
+    url = "/tcg/weiss/"
+    weight = 13
+  [[menu.main]]
+    identifier = "cart"
+    name = "Cart"
+    url = "/cart/"
+    weight = 90
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]

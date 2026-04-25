@@ -1,0 +1,36 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="index,follow" />
+
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.tagline }}{{ end }}" />
+
+{{/* Open Graph */}}
+<meta property="og:site_name" content="{{ site.Title }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+
+{{/* Tailwind — CDN for scaffold; swap for a built pipeline later */}}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: "#111111", accent: "#f59e0b" },
+        },
+      },
+    },
+  };
+</script>
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+{{/* Expose runtime config to client JS */}}
+<script>
+  window.FG = {
+    apiBase: {{ site.Params.apiBase | jsonify }},
+    stripePublishableKey: {{ site.Params.stripePublishableKey | jsonify }}
+  };
+</script>

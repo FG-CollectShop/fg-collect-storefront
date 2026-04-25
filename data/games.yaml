@@ -1,0 +1,18 @@
+- id: pokemon
+  name: "Pokémon"
+  shortName: "Pokémon"
+  order: 1
+  accent: "#ffcb05"
+  tagline: "Vintage, modern, and everything in between."
+- id: magic
+  name: "Magic: The Gathering"
+  shortName: "Magic"
+  order: 2
+  accent: "#d3202a"
+  tagline: "Singles, sealed, and sideboard staples."
+- id: weiss
+  name: "Weiß Schwarz"
+  shortName: "Weiß"
+  order: 3
+  accent: "#111111"
+  tagline: "EN and JP Weiß Schwarz, curated."

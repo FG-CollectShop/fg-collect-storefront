@@ -1,0 +1,28 @@
+<a
+  href="/cart/"
+  class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-black"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    class="w-5 h-5"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3 3h1.5l2.25 12.75a1.5 1.5 0 0 0 1.5 1.25h9.75a1.5 1.5 0 0 0 1.5-1.25L21 6H6"
+    />
+    <circle cx="9" cy="20" r="1.25" />
+    <circle cx="18" cy="20" r="1.25" />
+  </svg>
+  <span class="hidden sm:inline">Cart</span>
+  <span
+    data-cart-count
+    class="hidden min-w-[1.25rem] h-5 px-1.5 rounded-full bg-black text-white text-xs items-center justify-center font-semibold"
+  >
+    0
+  </span>
+</a>
