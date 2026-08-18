@@ -19,7 +19,12 @@
     <div class="text-xs text-gray-500">
       {{ $p.set }}{{ with $p.number }} · {{ . }}{{ end }}
     </div>
-    <div class="flex items-center gap-2 text-xs text-gray-600 mt-1">
+    <div class="flex items-center gap-2 text-xs text-gray-600 mt-1 flex-wrap">
+      {{ with $p.grading_company }}
+        <span class="px-1.5 py-0.5 bg-gray-900 text-white rounded font-semibold">
+          {{ upper . }}{{ with $p.grade }} {{ . }}{{ end }}
+        </span>
+      {{ end }}
       {{ with $p.condition }}<span class="px-1.5 py-0.5 bg-gray-100 rounded">{{ . }}</span>{{ end }}
       {{ with $p.language }}<span class="px-1.5 py-0.5 bg-gray-100 rounded">{{ . }}</span>{{ end }}
       {{ if $p.foil }}<span class="px-1.5 py-0.5 bg-amber-100 text-amber-900 rounded">Foil</span>{{ end }}

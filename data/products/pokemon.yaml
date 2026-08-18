@@ -1,51 +1,29 @@
-# Placeholder data. Will be replaced by fg-collect-core API output at build time.
+# Generated at build time by scripts/fetch-products.py — do not edit manually.
 sealed:
-  - id: pkm-sealed-crown-zenith-etb
-    name: "Crown Zenith Elite Trainer Box"
-    set: "Crown Zenith"
-    price: 59.99
-    stock: 3
+  - id: "0decd58d-f225-4238-a627-a9c75b123b59"
+    name: "Scarlet & Violet Booster Bundle"
+    set: "Scarlet & Violet Base"
+    price: 24.99
+    stock: 5
     image: "/img/placeholder-sealed.svg"
-  - id: pkm-sealed-paldea-evolved-booster
-    name: "Paldea Evolved Booster Pack"
-    set: "Paldea Evolved"
-    price: 4.99
-    stock: 24
+    product_type: booster_bundle
+  - id: "97d81bd8-2627-47e1-9ad0-52219680705e"
+    name: Prismatic Evolutions Elite Trainer Box
+    set: Prismatic Evolutions
+    price: 69.99
+    stock: 2
     image: "/img/placeholder-sealed.svg"
-  - id: pkm-sealed-151-booster-bundle
-    name: "Scarlet & Violet 151 Booster Bundle"
-    set: "Scarlet & Violet 151"
-    price: 34.99
-    stock: 6
-    image: "/img/placeholder-sealed.svg"
+    product_type: etb
 singles:
-  - id: pkm-single-shadow-rider-calyrex-vmax
-    name: "Shadow Rider Calyrex VMAX"
-    set: "Chilling Reign"
-    number: "74/198"
-    price: 18.50
-    stock: 1
-    image: "/img/placeholder-single.svg"
-    condition: "NM"
-    language: "EN"
-    foil: true
-  - id: pkm-single-charizard-ex
-    name: "Charizard ex"
-    set: "Obsidian Flames"
-    number: "125/197"
+  - id: "271904a8-9a64-41e7-bec9-7deb7937e66c"
+    name: Charizard ex
+    set: Obsidian Flames
+    number: 125/197
     price: 29.99
     stock: 1
     image: "/img/placeholder-single.svg"
-    condition: "NM"
-    language: "EN"
+    condition: NM
+    language: EN
     foil: false
-  - id: pkm-single-umbreon-vmax-alt-art
-    name: "Umbreon VMAX (Alt Art)"
-    set: "Evolving Skies"
-    number: "215/203"
-    price: 495.00
-    stock: 1
-    image: "/img/placeholder-single.svg"
-    condition: "NM"
-    language: "EN"
-    foil: true
+graded:
+  []

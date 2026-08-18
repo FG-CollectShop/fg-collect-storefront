@@ -1,0 +1,122 @@
+{{ define "main" }}
+{{ $game := .Params.game }}
+{{ $gameData := dict }}
+{{ range site.Data.games }}{{ if eq .id $game }}{{ $gameData = . }}{{ end }}{{ end }}
+{{/*
+  Graded slabs come from data/products/<game>.graded (built from /api/v1/listings?game=<g>&type=graded).
+  Until the build pipeline populates this, the page renders an empty-state.
+*/}}
+{{ $products := slice }}
+{{ with index site.Data.products $game }}
+  {{ with .graded }}{{ $products = . }}{{ end }}
+{{ end }}
+
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <nav class="text-sm text-gray-500 mb-2">
+    <a href="/" class="hover:text-black">Home</a>
+    <span class="mx-1">/</span>
+    <a href="/tcg/" class="hover:text-black">TCGs</a>
+    <span class="mx-1">/</span>
+    <a href="/tcg/{{ $game }}/" class="hover:text-black">{{ $gameData.shortName }}</a>
+    <span class="mx-1">/</span>
+    <span>Graded</span>
+  </nav>
+  <div class="flex items-end justify-between flex-wrap gap-4">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight">{{ .Title }}</h1>
+      {{ with .Description }}<p class="mt-2 text-gray-600 max-w-2xl">{{ . }}</p>{{ end }}
+    </div>
+    <div class="text-sm text-gray-500">
+      {{ len $products }} slab{{ if ne (len $products) 1 }}s{{ end }}
+    </div>
+  </div>
+
+  <div class="mt-6 flex flex-wrap gap-3 items-center">
+    <input
+      type="search"
+      data-filter-query
+      placeholder="Search by card name or set..."
+      class="flex-1 min-w-[240px] px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black/10"
+    />
+    <select data-filter-grader class="px-3 py-2 text-sm border border-gray-300 rounded-md">
+      <option value="">Any grader</option>
+      <option value="psa">PSA</option>
+      <option value="bgs">BGS</option>
+      <option value="sgc">SGC</option>
+      <option value="cgc">CGC</option>
+    </select>
+    <select data-filter-grade class="px-3 py-2 text-sm border border-gray-300 rounded-md">
+      <option value="">Any grade</option>
+      <option value="10">10 only</option>
+      <option value="9">9+</option>
+      <option value="8">8+</option>
+      <option value="7">7+</option>
+    </select>
+  </div>
+
+  <div class="mt-4 text-xs text-gray-500" data-results-count></div>
+
+  <div class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" data-products-grid>
+    {{ range $products }}
+      <div
+        data-product
+        data-name="{{ lower .name }}"
+        data-set="{{ lower .set }}"
+        data-grader="{{ lower .grading_company }}"
+        data-grade="{{ .grade }}"
+      >
+        {{ partial "product-card.html" . }}
+      </div>
+    {{ else }}
+      <div class="col-span-full text-center text-gray-500 py-20">
+        No graded slabs listed right now. Check back soon.
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script defer>
+(function () {
+  function init() {
+    var q = document.querySelector('[data-filter-query]');
+    var grader = document.querySelector('[data-filter-grader]');
+    var grade = document.querySelector('[data-filter-grade]');
+    var grid = document.querySelector('[data-products-grid]');
+    var count = document.querySelector('[data-results-count]');
+    if (!grid) return;
+
+    var items = Array.prototype.slice.call(grid.querySelectorAll('[data-product]'));
+
+    function apply() {
+      var qv = (q && q.value || '').toLowerCase().trim();
+      var gv = grader && grader.value || '';
+      var minGrade = grade && grade.value ? parseFloat(grade.value) : null;
+      var shown = 0;
+      items.forEach(function (el) {
+        var matches = true;
+        if (qv) {
+          matches = el.dataset.name.indexOf(qv) !== -1 || el.dataset.set.indexOf(qv) !== -1;
+        }
+        if (matches && gv) matches = el.dataset.grader === gv;
+        if (matches && minGrade !== null) matches = parseFloat(el.dataset.grade || '0') >= minGrade;
+        el.style.display = matches ? '' : 'none';
+        if (matches) shown++;
+      });
+      if (count) count.textContent = shown + ' of ' + items.length + ' shown';
+    }
+
+    [q, grader, grade].forEach(function (el) {
+      if (!el) return;
+      el.addEventListener('input', apply);
+      el.addEventListener('change', apply);
+    });
+    apply();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+{{ end }}

@@ -12,11 +12,14 @@ uglyURLs = false
 
   # Stripe publishable key (pk_*). Safe to commit — NOT the secret key.
   # Replace with pk_live_... at launch. Leave empty to disable checkout button.
+  # CF Pages env var: HUGO_PARAMS_STRIPEPUBLISHABLEKEY
   stripePublishableKey = ""
 
   # Base URL of fg-collect-core API. Client-side JS hits {apiBase}/checkout/session.
   # Empty disables checkout (scaffold mode).
-  apiBase = ""
+  # CF Pages env var: HUGO_PARAMS_APIBASE=https://api.futuregadgetlabs.com/api/v1
+  # Local dev: set to http://localhost:8080/api/v1 while running docker compose.
+  apiBase = "http://localhost:8080/api/v1"
 
 [markup]
   [markup.goldmark.renderer]
@@ -49,6 +52,12 @@ uglyURLs = false
     parent = "tcg"
     url = "/tcg/weiss/"
     weight = 13
+  [[menu.main]]
+    identifier = "graded-all"
+    name = "Graded slabs"
+    parent = "tcg"
+    url = "/tcg/pokemon/graded/"
+    weight = 18
   [[menu.main]]
     identifier = "tcg-all"
     name = "All TCGs"
