@@ -85,6 +85,11 @@ def graded_to_yaml(item: dict) -> str:
         f"    grading_company: {yaml_str(details.get('grading_company') or '')}",
         f"    grade: {yaml_str(details.get('grade', ''))}",
     ]
+    # The label is part of the grade: CGC Pristine 10 and Gem Mint 10 differ.
+    if label := details.get("grade_label"):
+        lines.append(f"    grade_label: {yaml_str(label)}")
+    if card := details.get("card_image_url"):
+        lines.append(f"    card_image: {yaml_str(card)}")
     if cert := details.get("cert_number"):
         lines.append(f"    cert_number: {yaml_str(cert)}")
     return "\n".join(lines)

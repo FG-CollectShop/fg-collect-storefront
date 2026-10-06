@@ -6,13 +6,22 @@
 <article
   class="group flex flex-col border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition"
 >
-  <a href="#" class="block aspect-[3/4] bg-gray-50 flex items-center justify-center overflow-hidden">
+  <a href="#" class="relative block aspect-[3/4] bg-gray-50 flex items-center justify-center overflow-hidden">
     <img
       src="{{ $p.image }}"
       alt="{{ $p.name }}"
       loading="lazy"
       class="object-contain w-full h-full group-hover:scale-[1.02] transition"
     />
+    {{/* Graded slabs: hovering shows the raw card, when it differs from the main image. */}}
+    {{ with $p.card_image }}{{ if ne . $p.image }}
+      <img
+        src="{{ . }}"
+        alt="{{ $p.name }} (card)"
+        loading="lazy"
+        class="absolute inset-0 object-contain w-full h-full bg-gray-50 opacity-0 group-hover:opacity-100 transition"
+      />
+    {{ end }}{{ end }}
   </a>
   <div class="p-3 flex-1 flex flex-col gap-1">
     <div class="text-sm font-medium line-clamp-2">{{ $p.name }}</div>
@@ -21,8 +30,10 @@
     </div>
     <div class="flex items-center gap-2 text-xs text-gray-600 mt-1 flex-wrap">
       {{ with $p.grading_company }}
-        <span class="px-1.5 py-0.5 bg-gray-900 text-white rounded font-semibold">
-          {{ upper . }}{{ with $p.grade }} {{ . }}{{ end }}
+        {{ $label := upper ($p.grade_label | default "") }}
+        {{ $premium := or (strings.Contains $label "PRISTINE") (strings.Contains $label "BLACK LABEL") }}
+        <span class="px-1.5 py-0.5 rounded font-semibold {{ if $premium }}bg-amber-400 text-gray-900{{ else }}bg-gray-900 text-white{{ end }}">
+          {{ upper . }}{{ if $premium }} {{ $label }}{{ end }}{{ with $p.grade }} {{ . }}{{ end }}
         </span>
       {{ end }}
       {{ with $p.condition }}<span class="px-1.5 py-0.5 bg-gray-100 rounded">{{ . }}</span>{{ end }}
